@@ -71,6 +71,15 @@ Enquanto estiver vazio, os cadastros ficam só no navegador (bom para testar).
 
 ## 4. O que já está pronto no app
 
+**Português e inglês (EUA):** o idioma muda no perfil ou pela landing. Em inglês o app usa libras, polegadas, onças, preços em dólar, 911 e comidas americanas. Landing em inglês: `/en/`.
+
+**Módulos Premium:**
+- **Treino personalizado** (`src/workouts.ts`): nível por idade, IMC e atividade; casa ou academia; 2 a 5 dias; baixo impacto e troca de exercícios para joelho, coluna e ombro; progressão semanal e cardio até 150 min/semana.
+- **6 dietas** (`src/diets.ts`): alta proteína, mediterrânea, low carb moderada, vegetariana, prática e econômica, leve para dias de enjoo. Calorias por Mifflin-St Jeor com déficit seguro e porções ajustadas para cada pessoa.
+- **Análise corporal** (`src/fitness.ts`): % de gordura (fórmula da Marinha dos EUA ou IMC), massa magra, cintura/altura, cintura/quadril e faixa de peso saudável.
+- **Alarmes** (`src/screens/Reminders.tsx`): água, refeições, sono e treino, salvos no calendário do celular e avisos do app.
+
+
 - **Cadastro guiado** (nome, caneta, dose receitada, dia e horário, peso, meta) com aceite de que o uso é com acompanhamento médico.
 - **Hoje:** status da dose (no dia, atrasada, faltam X dias), próximo local sugerido, kg perdidos, % de adesão, metas de proteína e água.
 - **Doses:** registro com mapa do corpo e rodízio automático (barriga, coxas, braços), histórico, adesão, **lembrete no calendário do celular** (arquivo .ics recorrente que funciona com o app fechado) e aviso do navegador.
@@ -84,10 +93,10 @@ Enquanto estiver vazio, os cadastros ficam só no navegador (bom para testar).
 
 ## 5. Preço
 
-- **Grátis para sempre:** lembretes, rodízio, peso, sintomas, proteína e água.
-- **Premium:** R$ 12,90/mês ou R$ 89,90/ano, com 7 dias grátis.
-
-O relatório de pesquisa sugeria R$ 24,90/mês. Baixei para R$ 12,90 porque o pedido foi um produto "acessível a todos". A pergunta de preço da landing serve justamente para ajustar esse valor com dados reais.
+- **Grátis para sempre:** lembrete de dose, rodízio, estoque da caneta, plano de doses, peso, sintomas, proteína e água.
+- **Premium (Brasil):** R$ 29,90/mês ou R$ 149,90/ano (12x de R$ 12,49), com 7 dias grátis.
+- **Premium (EUA):** US$ 12,99/mês ou US$ 69,99/ano.
+- O Premium inclui: treino personalizado, 6 dietas com cardápio calculado, análise corporal, alarmes de água, refeições, sono e treino, relatório para o médico e análises de ritmo e sintomas.
 
 ## 6. Próximos passos técnicos (quando a validação der certo)
 

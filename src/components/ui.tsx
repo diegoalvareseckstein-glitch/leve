@@ -1,4 +1,5 @@
 import { useEffect, type ReactNode } from 'react'
+import { t } from '../i18n'
 
 const paths: Record<string, ReactNode> = {
   home: <path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" />,
@@ -16,6 +17,7 @@ const paths: Record<string, ReactNode> = {
   alert: <><path d="M12 3l10 18H2z" /><path d="M12 10v5M12 18h.01" /></>,
   drop: <path d="M12 3s7 7 7 12a7 7 0 0 1-14 0c0-5 7-12 7-12z" />,
   lock: <><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></>,
+  dumbbell: <><path d="M6 8v8M18 8v8M3 10v4M21 10v4M6 12h12" /></>,
   trash: <><path d="M4 7h16" /><path d="M9 7V4h6v3" /><path d="M6 7l1 13h10l1-13" /></>
 }
 
@@ -41,7 +43,7 @@ export function Sheet({ open, onClose, title, children }: { open: boolean; onClo
       <div className="sheet" role="dialog" aria-modal="true" aria-label={title} onClick={e => e.stopPropagation()}>
         <div className="sheet-head">
           <h2>{title}</h2>
-          <button className="icon-btn" onClick={onClose} aria-label="Fechar"><Icon name="close" /></button>
+          <button className="icon-btn" onClick={onClose} aria-label={t('Fechar', 'Close')}><Icon name="close" /></button>
         </div>
         {children}
       </div>
