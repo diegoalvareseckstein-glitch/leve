@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leve · o app de quem usa Mounjaro, Ozempic ou Wegovy</title>
+  <meta name="description" content="Nunca mais esqueça a dose. Acompanhe peso, sintomas e proteína, e leve um relatório pronto ao médico. Grátis no essencial." />
+  <meta property="og:title" content="Leve · seu tratamento com canetas, no controle" />
+  <meta property="og:description" content="Lembrete de dose, rodízio do local de aplicação, peso, sintomas e proteína. Em português, grátis no essencial." />
+  <meta property="og:image" content="img/app-hoje.png" />
+  <meta name="theme-color" content="#0E6E62" />
+  <link rel="icon" href="img/icon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#F4F6F2; --surface:#fff; --text:#13201C; --muted:#55645F; --primary:#0E6E62; --primary-soft:#DDF1EA; --accent:#F2704E; --accent-soft:#FFE6DD; --border:#E1E7E2; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin:0; font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; color:var(--text); background:var(--bg); line-height:1.55; font-size:17px; -webkit-font-smoothing:antialiased; }
+    a { color: var(--primary); }
+    :focus-visible { outline:3px solid var(--accent); outline-offset:2px; border-radius:6px; }
+    .wrap { max-width:1120px; margin:0 auto; padding:0 20px; }
+    nav { display:flex; justify-content:space-between; align-items:center; padding:18px 0; }
+    .logo { display:flex; gap:10px; align-items:center; font-weight:800; font-size:1.3rem; color:var(--primary); text-decoration:none; letter-spacing:-.02em; }
+    .logo img { width:36px; height:36px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border:0; border-radius:16px; padding:15px 24px; font:inherit; font-weight:700; cursor:pointer; text-decoration:none; min-height:52px; transition:transform .1s, filter .15s; }
+    .btn:hover { filter:brightness(1.06); } .btn:active { transform:scale(.98); }
+    .btn.primary { background:var(--primary); color:#fff; }
+    .btn.accent { background:var(--accent); color:#fff; }
+    .btn.ghost { background:transparent; color:var(--text); border:1.5px solid var(--border); }
+    .btn.small { min-height:42px; padding:9px 16px; font-size:.95rem; }
+
+    .hero { display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center; padding:40px 0 70px; }
+    .pill { display:inline-flex; gap:8px; align-items:center; background:var(--primary-soft); color:var(--primary); font-weight:700; font-size:.88rem; padding:7px 14px; border-radius:30px; }
+    h1 { font-size:clamp(2.2rem, 5vw, 3.6rem); line-height:1.05; letter-spacing:-.035em; margin:18px 0; font-weight:800; }
+    h1 em { font-style:normal; color:var(--primary); }
+    .lead { font-size:1.2rem; color:var(--muted); max-width:34ch; }
+    .cta-row { display:flex; gap:12px; flex-wrap:wrap; margin:28px 0 18px; }
+    .trust { display:flex; gap:18px; flex-wrap:wrap; color:var(--muted); font-size:.92rem; font-weight:600; }
+    .phones { position:relative; height:600px; }
+    .phone { position:absolute; width:270px; border-radius:40px; padding:10px; background:#0B1714; box-shadow:0 30px 60px rgba(14,60,50,.25); }
+    .phone img { width:100%; display:block; border-radius:31px; }
+    .phone.p1 { right:120px; top:0; z-index:2; }
+    .phone.p2 { right:0; top:70px; transform:rotate(5deg); opacity:.97; }
+
+    section { padding:70px 0; }
+    .eyebrow { font-weight:800; color:var(--accent); text-transform:uppercase; letter-spacing:.08em; font-size:.82rem; }
+    h2 { font-size:clamp(1.8rem, 3.6vw, 2.6rem); letter-spacing:-.03em; line-height:1.1; margin:10px 0 16px; }
+    .sub { color:var(--muted); font-size:1.1rem; max-width:60ch; }
+    .pains { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:30px; }
+    .pain { background:var(--surface); border:1px solid var(--border); border-radius:22px; padding:22px; }
+    .pain b { display:block; font-size:1.1rem; margin:8px 0 4px; }
+    .pain p { margin:0; color:var(--muted); }
+    .emoji { font-size:1.8rem; }
+
+    .features { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:30px; }
+    .feature { background:var(--surface); border-radius:22px; padding:24px; border:1px solid var(--border); }
+    .feature h3 { margin:12px 0 6px; font-size:1.15rem; }
+    .feature p { margin:0; color:var(--muted); }
+    .feature .ic { width:48px; height:48px; border-radius:14px; display:grid; place-items:center; background:var(--primary-soft); font-size:1.5rem; }
+
+    .results { background:var(--primary); color:#fff; border-radius:32px; padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+    .results h2 { color:#fff; }
+    .results .sub { color:rgba(255,255,255,.85); }
+    .nums { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .num { background:rgba(255,255,255,.1); border-radius:20px; padding:20px; }
+    .num b { display:block; font-size:2.2rem; letter-spacing:-.03em; }
+    .num span { color:rgba(255,255,255,.85); font-size:.95rem; }
+    .results small { color:rgba(255,255,255,.7); }
+
+    .pricing { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:30px; max-width:820px; }
+    .plan { background:var(--surface); border-radius:26px; padding:28px; border:1px solid var(--border); display:flex; flex-direction:column; }
+    .plan.featured { border:2px solid var(--accent); position:relative; }
+    .plan .tag { position:absolute; top:-13px; left:24px; background:var(--accent); color:#fff; font-weight:800; font-size:.78rem; padding:5px 12px; border-radius:20px; }
+    .price { font-size:2.6rem; font-weight:800; letter-spacing:-.03em; margin:8px 0 0; }
+    .price span { font-size:1rem; color:var(--muted); font-weight:600; }
+    .plan ul { list-style:none; padding:0; margin:18px 0 24px; display:flex; flex-direction:column; gap:10px; flex:1; }
+    .plan li::before { content:'✓'; color:var(--primary); font-weight:800; margin-right:10px; }
+
+    .signup { background:var(--surface); border-radius:32px; padding:44px; border:1px solid var(--border); display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+    form { display:flex; flex-direction:column; gap:14px; }
+    label { font-weight:600; font-size:.95rem; display:flex; flex-direction:column; gap:6px; }
+    input, select { font:inherit; min-height:52px; padding:10px 14px; border-radius:14px; border:1.5px solid var(--border); background:#fff; }
+    input:focus, select:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 4px var(--primary-soft); }
+    fieldset { border:0; padding:0; margin:0; }
+    legend { font-weight:600; font-size:.95rem; margin-bottom:8px; }
+    .radios { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .radios label { flex-direction:row; align-items:center; gap:10px; border:1.5px solid var(--border); border-radius:14px; padding:12px; font-weight:600; cursor:pointer; }
+    .radios input { min-height:0; width:20px; height:20px; accent-color:var(--primary); }
+    .radios label:has(input:checked) { border-color:var(--primary); background:var(--primary-soft); }
+    .consent { flex-direction:row; align-items:flex-start; gap:10px; font-weight:500; font-size:.88rem; color:var(--muted); }
+    .consent input { min-height:0; width:20px; height:20px; margin-top:2px; accent-color:var(--primary); flex:none; }
+    .success { display:none; background:var(--primary-soft); color:var(--primary); padding:22px; border-radius:18px; font-weight:600; }
+    .success.show { display:block; }
+
+    details { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:4px 22px; margin-bottom:10px; }
+    summary { cursor:pointer; padding:16px 0; font-weight:700; list-style:none; display:flex; justify-content:space-between; }
+    summary::after { content:'+'; font-size:1.3rem; color:var(--muted); }
+    details[open] summary::after { content:'−'; }
+    details p { margin:0 0 16px; color:var(--muted); }
+
+    footer { padding:40px 0 60px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--border); margin-top:40px; }
+    .disclaimer { background:var(--accent-soft); color:#7A2E17; border-radius:16px; padding:16px 18px; font-size:.9rem; margin-bottom:22px; }
+
+    @media (max-width: 900px) {
+      .hero, .results, .signup { grid-template-columns:1fr; }
+      .phones { height:470px; max-width:400px; margin:0 auto; width:100%; }
+      .phone { width:210px; border-radius:32px; } .phone img { border-radius:24px; }
+      .phone.p1 { right:auto; left:0; } .phone.p2 { right:0; top:50px; }
+      .pains, .features, .pricing { grid-template-columns:1fr; }
+      .results, .signup { padding:28px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="#"><img src="img/icon.svg" alt="" /> Leve</a>
+      <a class="btn primary small" href="#lista" data-track="nav_cta">Quero acesso</a>
+    </nav>
+
+    <header class="hero">
+      <div>
+        <span class="pill">💉 Para quem usa Mounjaro, Ozempic ou Wegovy</span>
+        <h1>Seu tratamento com canetas, <em>leve e no controle.</em></h1>
+        <p class="lead">Nunca mais esqueça a dose. Acompanhe seu peso, seus sintomas e sua proteína, e chegue à consulta com um relatório pronto.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#lista" data-track="hero_cta">Entrar na lista de acesso</a>
+          <a class="btn ghost" href="app/" data-track="hero_demo">Ver o app funcionando</a>
+        </div>
+        <div class="trust"><span>🇧🇷 Em português</span><span>🔒 Dados só no seu celular</span><span>💚 Grátis no essencial</span></div>
+      </div>
+      <div class="phones" aria-hidden="true">
+        <div class="phone p2"><img src="img/app-progresso.png" alt="" /></div>
+        <div class="phone p1"><img src="img/app-hoje.png" alt="" /></div>
+      </div>
+    </header>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">O problema</div>
+      <h2>A caneta funciona. O difícil é o dia a dia.</h2>
+      <p class="sub">Milhões de brasileiros já usam canetas emagrecedoras, mas quase todo o acompanhamento ainda é feito de cabeça, em anotação no celular ou em apps em inglês.</p>
+      <div class="pains">
+        <div class="pain"><span class="emoji">🗓️</span><b>"Foi segunda ou terça?"</b><p>Esquecer o dia ou aplicar sempre no mesmo lugar é comum, e atrapalha o resultado.</p></div>
+        <div class="pain"><span class="emoji">🤢</span><b>Enjoo e intestino preso</b><p>Os efeitos vêm e vão, e na consulta ninguém lembra quando nem quanto.</p></div>
+        <div class="pain"><span class="emoji">💪</span><b>Perder músculo, não só gordura</b><p>Com pouca fome, falta proteína. Sem ela, parte do peso perdido é músculo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">Como o Leve ajuda</div>
+      <h2>Tudo do seu tratamento num lugar só</h2>
+      <div class="features">
+        <div class="feature"><div class="ic">💉</div><h3>Lembrete de dose</h3><p>Aviso no dia e horário certos, direto no calendário do celular.</p></div>
+        <div class="feature"><div class="ic">🔄</div><h3>Rodízio do local</h3><p>O app mostra no desenho do corpo onde aplicar desta vez.</p></div>
+        <div class="feature"><div class="ic">📉</div><h3>Peso e medidas</h3><p>Gráfico da evolução, marcos de 5% e 10% e quanto falta para a meta.</p></div>
+        <div class="feature"><div class="ic">🩺</div><h3>Diário de sintomas</h3><p>Registre em dois toques e receba dicas práticas para cada efeito.</p></div>
+        <div class="feature"><div class="ic">🍗</div><h3>Meta de proteína</h3><p>Some ovos, frango, iogurte e feijão com um toque. Comida brasileira de verdade.</p></div>
+        <div class="feature"><div class="ic">📄</div><h3>Relatório ao médico</h3><p>Um resumo de uma página, pronto para imprimir ou mandar no WhatsApp.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="results">
+        <div>
+          <div class="eyebrow" style="color:#BDF0D8">Resultados que dá para medir</div>
+          <h2>Constância é o que separa quem chega à meta</h2>
+          <p class="sub">O Leve mostra o que importa: se você está tomando as doses em dia, quanto já perdeu e se está comendo proteína suficiente.</p>
+        </div>
+        <div class="nums">
+          <div class="num"><b>% de adesão</b><span>doses tomadas no prazo, semana a semana</span></div>
+          <div class="num"><b>5% · 10%</b><span>marcos de perda de peso que já trazem benefícios à saúde</span></div>
+          <div class="num"><b>g de proteína</b><span>meta diária calculada para o seu peso</span></div>
+          <div class="num"><b>1 página</b><span>de relatório para a sua consulta</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="precos">
+    <div class="wrap">
+      <div class="eyebrow">Preço justo</div>
+      <h2>Acessível para todo mundo</h2>
+      <p class="sub">O essencial é grátis para sempre. O Premium custa menos que um café por mês.</p>
+      <div class="pricing">
+        <div class="plan">
+          <h3>Grátis</h3>
+          <div class="price">R$ 0</div>
+          <ul><li>Lembrete de dose e rodízio do local</li><li>Peso, medidas e gráfico</li><li>Diário de sintomas com dicas</li><li>Meta de proteína e água</li></ul>
+          <a class="btn ghost" href="#lista" data-track="plan_free" data-plan="gratis">Quero o grátis</a>
+        </div>
+        <div class="plan featured">
+          <span class="tag">7 dias grátis</span>
+          <h3>Premium</h3>
+          <div class="price">R$ 12,90 <span>/mês</span></div>
+          <p style="margin:4px 0 0;color:var(--muted)">ou R$ 89,90 por ano (R$ 7,49/mês)</p>
+          <ul><li>Tudo do plano grátis</li><li>Relatório em PDF para o médico</li><li>Ritmo semanal e previsão da meta</li><li>Em quais dias a dose dá mais sintomas</li><li>Backup dos seus dados</li></ul>
+          <a class="btn accent" href="#lista" data-track="plan_premium" data-plan="premium">Quero o Premium</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lista">
+    <div class="wrap">
+      <div class="signup">
+        <div>
+          <div class="eyebrow">Acesso antecipado</div>
+          <h2>Seja um dos primeiros a usar</h2>
+          <p class="sub">Quem entrar na lista agora ganha <b>3 meses de Premium grátis</b> no lançamento e ajuda a decidir as próximas funções.</p>
+          <p class="sub">Leva 30 segundos. Não mandamos spam.</p>
+        </div>
+        <div>
+          <form id="form" novalidate>
+            <label>Seu nome<input name="nome" autocomplete="given-name" required /></label>
+            <label>E-mail ou WhatsApp<input name="contato" required placeholder="voce@email.com ou (11) 9..." /></label>
+            <label>Qual caneta você usa?
+              <select name="caneta" required>
+                <option value="">Escolha</option>
+                <option>Mounjaro</option><option>Ozempic</option><option>Wegovy</option><option>Saxenda</option>
+                <option>Outra</option><option>Ainda não uso, estou pensando</option><option>Sou profissional de saúde</option>
+              </select>
+            </label>
+            <fieldset>
+              <legend>Quanto você pagaria por mês por um app assim?</legend>
+              <div class="radios">
+                <label><input type="radio" name="pagaria" value="0" required /> Só usaria grátis</label>
+                <label><input type="radio" name="pagaria" value="ate10" /> Até R$ 10</label>
+                <label><input type="radio" name="pagaria" value="10a20" /> R$ 10 a R$ 20</label>
+                <label><input type="radio" name="pagaria" value="20mais" /> Mais de R$ 20</label>
+              </div>
+            </fieldset>
+            <label class="consent"><input type="checkbox" name="lgpd" required /> Aceito receber novidades do Leve. Posso sair quando quiser. Meus dados não serão vendidos.</label>
+            <input type="hidden" name="plano_clicado" id="plano" />
+            <input type="hidden" name="origem" id="origem" />
+            <button class="btn primary" type="submit">Quero acesso antecipado</button>
+            <p id="err" role="alert" style="color:#B42318;margin:0;font-weight:600"></p>
+          </form>
+          <div class="success" id="ok" role="status">🎉 Pronto! Você está na lista. Vamos te avisar assim que o Leve estiver disponível. Enquanto isso, <a href="app/">experimente a versão de demonstração</a>.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap" style="max-width:820px">
+      <h2>Perguntas frequentes</h2>
+      <details><summary>O Leve diz qual dose eu devo tomar?</summary><p>Não. O Leve só organiza o tratamento que seu médico receitou. Ele não indica, prescreve nem altera doses.</p></details>
+      <details><summary>Meus dados de saúde ficam seguros?</summary><p>Sim. Na versão atual tudo fica guardado só no seu celular. Você pode exportar ou apagar seus dados a qualquer momento, como prevê a LGPD.</p></details>
+      <details><summary>Funciona no iPhone e no Android?</summary><p>Sim. O Leve abre no navegador e pode ser instalado na tela inicial como um app, sem ocupar espaço.</p></details>
+      <details><summary>Preciso pagar?</summary><p>Não. Lembretes, peso, sintomas e proteína são grátis para sempre. O Premium é opcional.</p></details>
+      <details><summary>Serve para Saxenda, que é diário?</summary><p>Serve. Você escolhe se a sua caneta é semanal ou diária.</p></details>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <footer>
+      <div class="disclaimer"><b>Importante:</b> canetas emagrecedoras devem ser usadas somente com receita e acompanhamento médico. O Leve não substitui orientação profissional. Ozempic, Wegovy, Saxenda, Mounjaro e demais nomes são marcas de seus respectivos fabricantes; o Leve não tem relação com eles.</div>
+      <p>© <span id="y"></span> Leve · feito no Brasil 🇧🇷</p>
+    </footer>
+  </div>
+
+  <script>
+    // ===== CONFIGURAÇÃO =====
+    // Cole aqui o endereço do seu formulário (ex.: Formspree: https://formspree.io/f/xxxxxxx).
+    // Enquanto estiver vazio, os cadastros ficam salvos só no navegador (bom para testar).
+    const FORM_ENDPOINT = '';
+    // ========================
+
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const params = new URLSearchParams(location.search);
+    document.getElementById('origem').value = params.get('utm_source') || document.referrer || 'direto';
+
+    // Rastreia cliques (teste de "porta falsa" do preço). Se houver Google Analytics/Meta Pixel, envia o evento.
+    function track(name, data) {
+      try {
+        const log = JSON.parse(localStorage.getItem('leve:eventos') || '[]');
+        log.push({ name, data, t: Date.now() }); localStorage.setItem('leve:eventos', JSON.stringify(log));
+        if (window.gtag) gtag('event', name, data || {});
+        if (window.fbq) fbq('trackCustom', name, data || {});
+      } catch (e) {}
+    }
+    document.querySelectorAll('[data-track]').forEach(el => el.addEventListener('click', () => {
+      track(el.dataset.track);
+      if (el.dataset.plan) document.getElementById('plano').value = el.dataset.plan;
+    }));
+
+    document.getElementById('form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const f = e.target, err = document.getElementById('err');
+      if (!f.checkValidity()) { err.textContent = 'Preencha todos os campos e aceite receber novidades.'; f.reportValidity(); return; }
+      err.textContent = '';
+      const data = Object.fromEntries(new FormData(f));
+      track('cadastro', { caneta: data.caneta, pagaria: data.pagaria, plano: data.plano_clicado });
+      const btn = f.querySelector('button'); btn.disabled = true; btn.textContent = 'Enviando...';
+      try {
+        if (FORM_ENDPOINT) {
+          const r = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
+          if (!r.ok) throw new Error('falha');
+        } else {
+          const list = JSON.parse(localStorage.getItem('leve:cadastros') || '[]'); list.push(data);
+          localStorage.setItem('leve:cadastros', JSON.stringify(list));
+        }
+        f.style.display = 'none'; document.getElementById('ok').classList.add('show');
+      } catch (x) {
+        err.textContent = 'Não conseguimos enviar agora. Tente de novo em instantes.';
+        btn.disabled = false; btn.textContent = 'Quero acesso antecipado';
+      }
+    });
+  </script>
+</body>
+</html>
