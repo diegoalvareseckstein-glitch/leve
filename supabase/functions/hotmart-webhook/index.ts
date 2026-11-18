@@ -3,7 +3,6 @@
 import { createClient } from 'npm:@supabase/supabase-js@2'
 
 const db = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!)
-const HOTTOK = Deno.env.get('HOTMART_HOTTOK') ?? ''
 const PRODUCT_ID = Deno.env.get('HOTMART_PRODUCT_ID') ?? ''
 const ACCESS_DAYS = Number(Deno.env.get('ACCESS_DAYS') ?? '365')
 
@@ -17,9 +16,10 @@ Deno.serve(async req => {
   let body: any
   try { body = await req.json() } catch { return json({ error: 'invalid json' }, 400) }
 
-  const token = req.headers.get('x-hotmart-hottok') ?? body?.hottok ?? ''
+  const HOTTOK = (Deno.env.get('HOTMART_HOTTOK') ?? '').trim()
+  const token = (req.headers.get('x-hotmart-hottok') ?? body?.hottok ?? '').toString().trim()
   if (!HOTTOK || token !== HOTTOK) {
-    await db.from('webhook_log').insert({ event: body?.event ?? null, ok: false, note: 'hottok inválido' })
+    await db.from('webhook_log').insert({ event: body?.event ?? null, ok: false, note: `hottok inválido (recebido ${token.length} car., esperado ${HOTTOK.length} car.)` })
     return json({ error: 'unauthorized' }, 401)
   }
 
