@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { activatedSettings, checkActivation, useAppData } from './store'
+import { checkAccess, needsRecheck, revokedSettings, useAppData } from './store'
 import { Onboarding } from './screens/Onboarding'
 import { Today } from './screens/Today'
 import { Doses } from './screens/Doses'
@@ -58,16 +58,24 @@ export default function App() {
     document.documentElement.classList.toggle('high-contrast', data.settings.highContrast)
   }, [data.settings.largeText, data.settings.highContrast])
 
-  // Ativação do Premium pelo link da página de obrigado da Hotmart (?ativar=CODIGO)
+  // Página de obrigado da Hotmart: /app/?comprou=1 abre direto a tela de ativação
   useEffect(() => {
-    const code = new URLSearchParams(location.search).get('ativar') || new URLSearchParams(location.search).get('activate')
-    if (!code) return
-    checkActivation(code).then(ok => {
-      if (ok) { update(d => ({ ...d, settings: activatedSettings(d.settings) })); toast(t('Premium ativado! Obrigado pela compra 💚', 'Premium activated! Thank you 💚')) }
-      else toast(t('Código de ativação inválido.', 'Invalid activation code.'))
-      history.replaceState(null, '', location.pathname + (location.search.includes('lang=') ? '?lang=' + new URLSearchParams(location.search).get('lang') : ''))
+    const q = new URLSearchParams(location.search)
+    if (!q.has('comprou') && !q.has('ativar') && !q.has('activate')) return
+    setTab('planos')
+    history.replaceState(null, '', location.pathname + (q.get('lang') ? '?lang=' + q.get('lang') : ''))
+  }, [])
+
+  // Confere no servidor se o Premium continua valendo (reembolso, fim dos 12 meses)
+  useEffect(() => {
+    const s = data.settings
+    if (!needsRecheck(s) || !s.accessToken) return
+    checkAccess(s.accessToken).then(r => {
+      if (!r) return // sem internet: tenta de novo depois
+      if (r.active) update(d => ({ ...d, settings: { ...d.settings, premiumUntil: r.expires_at ?? '', accessCheckedAt: new Date().toISOString() } }))
+      else { update(d => ({ ...d, settings: revokedSettings(d.settings) })); toast(t('Seu acesso Premium terminou neste celular.', 'Your Premium access has ended on this phone.')) }
     })
-  }, [update, toast])
+  }, [data.settings.accessToken]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Aviso ao abrir o app no dia da dose (se a pessoa permitiu notificações)
   useEffect(() => {

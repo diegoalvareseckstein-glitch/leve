@@ -48,6 +48,9 @@ export interface Settings {
   trialEndsAt?: string
   premiumUntil?: string // compra: data de fim do acesso ('' = vitalício)
   purchased?: boolean
+  accessToken?: string // token deste aparelho (gerado pelo servidor na ativação)
+  accessCheckedAt?: string
+  buyerEmail?: string
   lang?: 'pt' | 'en'
 }
 

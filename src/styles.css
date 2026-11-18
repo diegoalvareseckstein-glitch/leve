@@ -354,3 +354,4 @@ html.high-contrast .dose-card { background: #004D44 !important; }
 .row2 > *, .row3 > *, .meal-times > * { min-width: 0; }
 .meal-times { grid-template-columns: 1fr 1fr; }
 input[type="time"], input[type="date"] { min-width: 0; padding-right: 8px; }
+.stack-form { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }

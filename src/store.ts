@@ -27,25 +27,50 @@ export function useAppData() {
 }
 export type Store = ReturnType<typeof useAppData>
 
-import { ACCESS_DAYS, ACTIVATION_HASHES } from './config'
+import { ACCESS_API, RECHECK_HOURS } from './config'
 
-/** Confere um código de ativação comparando o hash SHA-256 com a lista do config. */
-export async function checkActivation(code: string) {
-  const clean = code.trim().toUpperCase()
-  if (!clean || !crypto?.subtle) return false
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(clean))
-  const hex = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('')
-  return ACTIVATION_HASHES.includes(hex)
+export type ActivateResult = { ok: true; token: string; expires_at: string | null } | { ok: false; reason: string; max?: number }
+
+async function callAccess(body: Record<string, unknown>) {
+  if (!ACCESS_API) throw new Error('no_api')
+  const r = await fetch(ACCESS_API, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) })
+  return r.json()
 }
 
-export function activatedSettings(s: AppData['settings']): AppData['settings'] {
-  const until = ACCESS_DAYS > 0 ? new Date(Date.now() + ACCESS_DAYS * 86400000).toISOString() : ''
-  return { ...s, plan: 'premium', purchased: true, premiumUntil: until, trialEndsAt: undefined }
+/** Ativa o Premium neste aparelho com o e-mail e o código da transação da Hotmart. */
+export async function activatePurchase(email: string, transaction: string): Promise<ActivateResult> {
+  try {
+    const label = navigator.userAgent.replace(/\s+/g, ' ').slice(0, 80)
+    const r = await callAccess({ action: 'activate', email, transaction, label })
+    return r?.ok ? { ok: true, token: r.token, expires_at: r.expires_at ?? null } : { ok: false, reason: r?.reason ?? 'server', max: r?.max }
+  } catch { return { ok: false, reason: 'offline' } }
+}
+
+/** Confere no servidor se o acesso deste aparelho continua valendo. Retorna null se não deu para conferir (sem internet). */
+export async function checkAccess(token: string): Promise<{ active: boolean; expires_at: string | null } | null> {
+  try {
+    const r = await callAccess({ action: 'check', token })
+    return r?.ok ? { active: !!r.active, expires_at: r.expires_at ?? null } : null
+  } catch { return null }
+}
+export async function logoutAccess(token: string) { try { await callAccess({ action: 'logout', token }) } catch { /* sem internet */ } }
+
+export function needsRecheck(s: AppData['settings']) {
+  if (!s.accessToken) return false
+  return !s.accessCheckedAt || Date.now() - new Date(s.accessCheckedAt).getTime() > RECHECK_HOURS * 3600000
+}
+
+export function activatedSettings(s: AppData['settings'], token: string, expires: string | null, email: string): AppData['settings'] {
+  return { ...s, plan: 'premium', purchased: true, accessToken: token, premiumUntil: expires ?? '', accessCheckedAt: new Date().toISOString(), buyerEmail: email, trialEndsAt: undefined }
+}
+export function revokedSettings(s: AppData['settings']): AppData['settings'] {
+  return { ...s, plan: 'free', purchased: false, accessToken: undefined, premiumUntil: undefined, accessCheckedAt: undefined }
 }
 
 export function isPremium(d: AppData) {
   if (d.settings.plan !== 'premium') return false
-  if (d.settings.purchased) return !d.settings.premiumUntil || new Date(d.settings.premiumUntil) > new Date()
+  // Compra só vale com token do servidor (o código único antigo foi desativado)
+  if (d.settings.purchased) return !!d.settings.accessToken && (!d.settings.premiumUntil || new Date(d.settings.premiumUntil) > new Date())
   if (d.settings.trialEndsAt && new Date(d.settings.trialEndsAt) < new Date()) return false
   return true
 }
