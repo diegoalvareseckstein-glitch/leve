@@ -46,6 +46,8 @@ export interface Settings {
   highContrast: boolean
   plan: 'free' | 'premium'
   trialEndsAt?: string
+  premiumUntil?: string // compra: data de fim do acesso ('' = vitalício)
+  purchased?: boolean
   lang?: 'pt' | 'en'
 }
 

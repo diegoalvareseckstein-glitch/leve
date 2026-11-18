@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { useAppData } from './store'
+import { activatedSettings, checkActivation, useAppData } from './store'
 import { Onboarding } from './screens/Onboarding'
 import { Today } from './screens/Today'
 import { Doses } from './screens/Doses'
@@ -57,6 +57,17 @@ export default function App() {
     document.documentElement.classList.toggle('large-text', data.settings.largeText)
     document.documentElement.classList.toggle('high-contrast', data.settings.highContrast)
   }, [data.settings.largeText, data.settings.highContrast])
+
+  // Ativação do Premium pelo link da página de obrigado da Hotmart (?ativar=CODIGO)
+  useEffect(() => {
+    const code = new URLSearchParams(location.search).get('ativar') || new URLSearchParams(location.search).get('activate')
+    if (!code) return
+    checkActivation(code).then(ok => {
+      if (ok) { update(d => ({ ...d, settings: activatedSettings(d.settings) })); toast(t('Premium ativado! Obrigado pela compra 💚', 'Premium activated! Thank you 💚')) }
+      else toast(t('Código de ativação inválido.', 'Invalid activation code.'))
+      history.replaceState(null, '', location.pathname + (location.search.includes('lang=') ? '?lang=' + new URLSearchParams(location.search).get('lang') : ''))
+    })
+  }, [update, toast])
 
   // Aviso ao abrir o app no dia da dose (se a pessoa permitiu notificações)
   useEffect(() => {

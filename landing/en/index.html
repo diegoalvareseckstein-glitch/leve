@@ -128,7 +128,7 @@
         <h1>Your GLP-1 journey, <em>lighter and under control.</em></h1>
         <p class="lead">Dose reminders, workouts built for your body, a meal plan sized for you, and water, meal and sleep alarms. Lose fat, not muscle, and keep it off.</p>
         <div class="cta-row">
-          <a class="btn primary" href="#waitlist" data-track="hero_cta">Join the waitlist</a>
+          <a class="btn primary" href="#pricing" data-track="hero_cta">Get started now</a>
           <a class="btn ghost" href="../app/?lang=en" data-track="hero_demo">Try the live demo</a>
         </div>
         <div class="trust"><span>🔒 Your data stays on your phone</span><span>💚 Free to start</span><span>📱 iPhone & Android</span></div>
@@ -192,22 +192,23 @@
   <section id="pricing">
     <div class="wrap">
       <div class="eyebrow">Simple pricing</div>
-      <h2>Your pocket coach for less than a coffee a week</h2>
+      <h2>A full year of coaching for less than a single co-pay</h2>
       <p class="sub">Medication tracking is free forever. Premium adds your personal trainer and meal planner.</p>
       <div class="pricing">
         <div class="plan">
           <h3>Free</h3>
           <div class="price">$0</div>
           <ul><li>Dose reminders and site rotation</li><li>Supply tracker and dose plan</li><li>Weight, measurements and chart</li><li>Side effect diary with tips</li><li>Protein and water goals</li></ul>
-          <a class="btn ghost" href="#waitlist" data-track="plan_free" data-plan="free">I want Free</a>
+          <a class="btn ghost" href="../app/?lang=en" data-track="plan_free" data-plan="free">Use it free now</a>
         </div>
         <div class="plan featured">
-          <span class="tag">7-day free trial</span>
+          <span class="tag">7-day money-back guarantee</span>
           <h3>Premium</h3>
-          <div class="price">$69.99 <span>/year</span></div>
-          <p style="margin:4px 0 0;color:var(--muted)">just $5.83/month, or $12.99 billed monthly</p>
+          <div class="price">$49.90</div>
+          <p style="margin:4px 0 0;color:var(--muted)">One-time payment · 12 months of access · about $4.16 a month</p>
           <ul><li>Everything in Free</li><li>Workouts personalized to your age, weight and level</li><li>6 meal plans with portions calculated for you</li><li>Body analysis: body fat % and lean mass</li><li>Water, meal, sleep and workout alarms</li><li>Doctor visit report (PDF)</li></ul>
-          <a class="btn accent" href="#waitlist" data-track="plan_premium" data-plan="premium">I want Premium</a>
+          <a class="btn accent" href="#waitlist" data-buy data-track="plan_premium" data-plan="premium">Buy now</a>
+          <p style="margin:10px 0 0;color:var(--muted);font-size:.85rem;text-align:center">Secure checkout by Hotmart. Not happy? Full refund within 7 days.</p>
         </div>
       </div>
     </div>
@@ -278,6 +279,10 @@
     // Cole aqui o endereço do seu formulário (ex.: Formspree: https://formspree.io/f/xxxxxxx).
     // Enquanto estiver vazio, os cadastros ficam salvos só no navegador (bom para testar).
     const FORM_ENDPOINT = '';
+    // Hotmart checkout link (USD offer). While empty, "Buy now" scrolls to the waitlist.
+    const HOTMART_CHECKOUT = '';
+    if (HOTMART_CHECKOUT) document.querySelectorAll('[data-buy]').forEach(a => { a.href = HOTMART_CHECKOUT + (location.search ? (HOTMART_CHECKOUT.includes('?') ? '&' : '?') + location.search.slice(1) : ''); a.target = '_blank'; a.rel = 'noopener'; });
+
     // ========================
 
     document.getElementById('y').textContent = new Date().getFullYear();

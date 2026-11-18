@@ -109,5 +109,5 @@ export const FOOD_TIPS = () => en()
     ]
 
 export const PRICES = () => en()
-  ? { month: '$12.99', year: '$69.99', perMonth: '$5.83', save: '-55%', installments: '' }
-  : { month: 'R$ 29,90', year: 'R$ 149,90', perMonth: 'R$ 12,49', save: '-58%', installments: '12x de R$ 12,49' }
+  ? { price: '$49.90', note: 'One-time payment · 12 months of Premium', perMonth: 'about $4.16 a month' }
+  : { price: 'R$ 49,90', note: 'Pagamento único · 12 meses de Premium', perMonth: 'menos de R$ 4,16 por mês' }
