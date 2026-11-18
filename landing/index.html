@@ -281,7 +281,7 @@
     // Enquanto estiver vazio, os cadastros ficam salvos só no navegador (bom para testar).
     const FORM_ENDPOINT = '';
     // Link de checkout da Hotmart. Enquanto estiver vazio, "Comprar" leva para a lista de espera.
-    const HOTMART_CHECKOUT = '';
+    const HOTMART_CHECKOUT = 'https://pay.hotmart.com/S108552843Q';
     if (HOTMART_CHECKOUT) document.querySelectorAll('[data-buy]').forEach(a => { a.href = HOTMART_CHECKOUT + (location.search ? (HOTMART_CHECKOUT.includes('?') ? '&' : '?') + location.search.slice(1) : ''); a.target = '_blank'; a.rel = 'noopener'; });
 
     // ========================

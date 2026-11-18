@@ -2,7 +2,7 @@
 // Cole aqui os links de checkout da Hotmart quando o produto estiver cadastrado.
 // Enquanto estiverem vazios, o botão de compra leva para a lista de espera.
 export const HOTMART_CHECKOUT = {
-  pt: '', // ex.: https://pay.hotmart.com/A12345678B
+  pt: 'https://pay.hotmart.com/S108552843Q',
   en: ''  // ex.: https://pay.hotmart.com/C98765432D (oferta em dólar)
 }
 
