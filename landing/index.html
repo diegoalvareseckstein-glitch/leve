@@ -2,330 +2,297 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Leve · o app de quem usa Mounjaro, Ozempic ou Wegovy</title>
-  <meta name="description" content="Nunca mais esqueça a dose. Acompanhe peso, sintomas e proteína, e leve um relatório pronto ao médico. Grátis no essencial." />
-  <meta property="og:title" content="Leve · seu tratamento com canetas, no controle" />
-  <meta property="og:description" content="Lembrete de dose, rodízio do local de aplicação, peso, sintomas e proteína. Em português, grátis no essencial." />
-  <meta property="og:image" content="img/app-hoje.png" />
-  <meta name="theme-color" content="#0E6E62" />
-  <link rel="icon" href="img/icon.svg" type="image/svg+xml" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Leve · treino, dieta e lembretes para quem usa caneta GLP-1</title>
+  <meta name="description" content="Emagrecer não precisa ser uma luta solitária. Lembrete de dose, treino, dieta, alarmes e relatório para o médico, num app em português feito para quem usa Mounjaro, Ozempic ou Wegovy." />
+  <meta property="og:title" content="Leve · Emagrecer não precisa ser uma luta solitária" />
+  <meta property="og:description" content="Treino, dieta e lembretes feitos para quem usa caneta GLP-1. Pagamento único, 12 meses de acesso, garantia de 7 dias." />
+  <meta property="og:image" content="https://diegoalvareseckstein-glitch.github.io/leve/img/hotmart/capa-pt-v2.png" />
+  <meta name="theme-color" content="#0A0907" />
+  <link rel="icon" href="img/mark.svg" type="image/svg+xml" />
+  <link rel="alternate" hreflang="en" href="en/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root { --bg:#F4F6F2; --surface:#fff; --text:#13201C; --muted:#55645F; --primary:#0E6E62; --primary-soft:#DDF1EA; --accent:#F2704E; --accent-soft:#FFE6DD; --border:#E1E7E2; }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin:0; font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; color:var(--text); background:var(--bg); line-height:1.55; font-size:17px; -webkit-font-smoothing:antialiased; }
-    a { color: var(--primary); }
-    :focus-visible { outline:3px solid var(--accent); outline-offset:2px; border-radius:6px; }
-    .wrap { max-width:1120px; margin:0 auto; padding:0 20px; }
-    nav { display:flex; justify-content:space-between; align-items:center; padding:18px 0; }
-    .logo { display:flex; gap:10px; align-items:center; font-weight:800; font-size:1.3rem; color:var(--primary); text-decoration:none; letter-spacing:-.02em; }
-    .logo img { width:36px; height:36px; }
-    .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border:0; border-radius:16px; padding:15px 24px; font:inherit; font-weight:700; cursor:pointer; text-decoration:none; min-height:52px; transition:transform .1s, filter .15s; }
-    .btn:hover { filter:brightness(1.06); } .btn:active { transform:scale(.98); }
-    .btn.primary { background:var(--primary); color:#fff; }
-    .btn.accent { background:var(--accent); color:#fff; }
-    .btn.ghost { background:transparent; color:var(--text); border:1.5px solid var(--border); }
-    .btn.small { min-height:42px; padding:9px 16px; font-size:.95rem; }
-
-    .hero { display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center; padding:40px 0 70px; }
-    .pill { display:inline-flex; gap:8px; align-items:center; background:var(--primary-soft); color:var(--primary); font-weight:700; font-size:.88rem; padding:7px 14px; border-radius:30px; }
-    h1 { font-size:clamp(2.2rem, 5vw, 3.6rem); line-height:1.05; letter-spacing:-.035em; margin:18px 0; font-weight:800; }
-    h1 em { font-style:normal; color:var(--primary); }
-    .lead { font-size:1.2rem; color:var(--muted); max-width:34ch; }
-    .cta-row { display:flex; gap:12px; flex-wrap:wrap; margin:28px 0 18px; }
-    .trust { display:flex; gap:18px; flex-wrap:wrap; color:var(--muted); font-size:.92rem; font-weight:600; }
-    .phones { position:relative; height:600px; }
-    .phone { position:absolute; width:270px; border-radius:40px; padding:10px; background:#0B1714; box-shadow:0 30px 60px rgba(14,60,50,.25); }
-    .phone img { width:100%; display:block; border-radius:31px; }
-    .phone.p1 { right:120px; top:0; z-index:2; }
-    .phone.p2 { right:0; top:70px; transform:rotate(5deg); opacity:.97; }
-
-    section { padding:70px 0; }
-    .eyebrow { font-weight:800; color:var(--accent); text-transform:uppercase; letter-spacing:.08em; font-size:.82rem; }
-    h2 { font-size:clamp(1.8rem, 3.6vw, 2.6rem); letter-spacing:-.03em; line-height:1.1; margin:10px 0 16px; }
-    .sub { color:var(--muted); font-size:1.1rem; max-width:60ch; }
-    .pains { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:30px; }
-    .pain { background:var(--surface); border:1px solid var(--border); border-radius:22px; padding:22px; }
-    .pain b { display:block; font-size:1.1rem; margin:8px 0 4px; }
-    .pain p { margin:0; color:var(--muted); }
-    .emoji { font-size:1.8rem; }
-
-    .features { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:30px; }
-    .feature { background:var(--surface); border-radius:22px; padding:24px; border:1px solid var(--border); }
-    .feature h3 { margin:12px 0 6px; font-size:1.15rem; }
-    .feature p { margin:0; color:var(--muted); }
-    .feature .ic { width:48px; height:48px; border-radius:14px; display:grid; place-items:center; background:var(--primary-soft); font-size:1.5rem; }
-
-    .results { background:var(--primary); color:#fff; border-radius:32px; padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
-    .results h2 { color:#fff; }
-    .results .sub { color:rgba(255,255,255,.85); }
-    .nums { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-    .num { background:rgba(255,255,255,.1); border-radius:20px; padding:20px; }
-    .num b { display:block; font-size:2.2rem; letter-spacing:-.03em; }
-    .num span { color:rgba(255,255,255,.85); font-size:.95rem; }
-    .results small { color:rgba(255,255,255,.7); }
-
-    .pricing { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:30px; max-width:820px; }
-    .plan { background:var(--surface); border-radius:26px; padding:28px; border:1px solid var(--border); display:flex; flex-direction:column; }
-    .plan.featured { border:2px solid var(--accent); position:relative; }
-    .plan .tag { position:absolute; top:-13px; left:24px; background:var(--accent); color:#fff; font-weight:800; font-size:.78rem; padding:5px 12px; border-radius:20px; }
-    .price { font-size:2.6rem; font-weight:800; letter-spacing:-.03em; margin:8px 0 0; }
-    .price span { font-size:1rem; color:var(--muted); font-weight:600; }
-    .plan ul { list-style:none; padding:0; margin:18px 0 24px; display:flex; flex-direction:column; gap:10px; flex:1; }
-    .plan li::before { content:'✓'; color:var(--primary); font-weight:800; margin-right:10px; }
-
-    .signup { background:var(--surface); border-radius:32px; padding:44px; border:1px solid var(--border); display:grid; grid-template-columns:1fr 1fr; gap:40px; }
-    form { display:flex; flex-direction:column; gap:14px; }
-    label { font-weight:600; font-size:.95rem; display:flex; flex-direction:column; gap:6px; }
-    input, select { font:inherit; min-height:52px; padding:10px 14px; border-radius:14px; border:1.5px solid var(--border); background:#fff; }
-    input:focus, select:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 4px var(--primary-soft); }
-    fieldset { border:0; padding:0; margin:0; }
-    legend { font-weight:600; font-size:.95rem; margin-bottom:8px; }
-    .radios { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-    .radios label { flex-direction:row; align-items:center; gap:10px; border:1.5px solid var(--border); border-radius:14px; padding:12px; font-weight:600; cursor:pointer; }
-    .radios input { min-height:0; width:20px; height:20px; accent-color:var(--primary); }
-    .radios label:has(input:checked) { border-color:var(--primary); background:var(--primary-soft); }
-    .consent { flex-direction:row; align-items:flex-start; gap:10px; font-weight:500; font-size:.88rem; color:var(--muted); }
-    .consent input { min-height:0; width:20px; height:20px; margin-top:2px; accent-color:var(--primary); flex:none; }
-    .success { display:none; background:var(--primary-soft); color:var(--primary); padding:22px; border-radius:18px; font-weight:600; }
-    .success.show { display:block; }
-
-    details { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:4px 22px; margin-bottom:10px; }
-    summary { cursor:pointer; padding:16px 0; font-weight:700; list-style:none; display:flex; justify-content:space-between; }
-    summary::after { content:'+'; font-size:1.3rem; color:var(--muted); }
-    details[open] summary::after { content:'−'; }
-    details p { margin:0 0 16px; color:var(--muted); }
-
-    footer { padding:40px 0 60px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--border); margin-top:40px; }
-    .disclaimer { background:var(--accent-soft); color:#7A2E17; border-radius:16px; padding:16px 18px; font-size:.9rem; margin-bottom:22px; }
-
-    @media (max-width: 900px) {
-      .hero, .results, .signup { grid-template-columns:1fr; }
-      .phones { height:470px; max-width:400px; margin:0 auto; width:100%; }
-      .phone { width:210px; border-radius:32px; } .phone img { border-radius:24px; }
-      .phone.p1 { right:auto; left:0; } .phone.p2 { right:0; top:50px; }
-      .pains, .features, .pricing { grid-template-columns:1fr; }
-      .results, .signup { padding:28px; }
-    }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="img/app-hoje.webp" />
+  <link rel="stylesheet" href="assets/leve.css" />
 </head>
 <body>
-  <div class="wrap">
-    <nav>
-      <a class="logo" href="#"><img src="img/icon.svg" alt="" /> Leve</a>
-      <div style="display:flex;gap:10px;align-items:center"><a href="en/" class="btn ghost small" hreflang="en">🇺🇸 English</a><a class="btn primary small" href="#lista" data-track="nav_cta">Quero acesso</a></div>
-    </nav>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l4.5 4.5L19.5 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 1112 0v5l1.5 2h-15L6 16zM10 20.5a2 2 0 004 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+      <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 5.5-13.5 15-14-.8 9-6.5 14-15 14zM5 19c3.5-4.5 7-7.5 11-10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l2.5-6 5 12L17 12h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-body" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 9h12M12 9v5m0 0l-3 7m3-7l3 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 9v4l2.5 2M5 4.5L3 6.5M19 4.5l2 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+      <symbol id="i-box" viewBox="0 0 24 24"><path d="M4 8l8-4 8 4v8l-8 4-8-4V8zm0 0l8 4 8-4M12 12v8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+      <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8.5 10.5V8a3.5 3.5 0 017 0v2.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+      <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3.5s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    </defs>
+  </svg>
 
-    <header class="hero">
-      <div>
-        <span class="pill">💉 Para quem usa Mounjaro, Ozempic ou Wegovy</span>
-        <h1>Seu tratamento com canetas, <em>leve e no controle.</em></h1>
-        <p class="lead">Lembrete de dose, treino personalizado, dieta calculada para você e alarmes de água, comida e sono. Tudo para você perder gordura, não músculo, e não recuperar o peso depois.</p>
-        <div class="cta-row">
-          <a class="btn primary" href="#precos" data-track="hero_cta">Quero começar agora</a>
-          <a class="btn ghost" href="app/" data-track="hero_demo">Ver o app funcionando</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#" aria-label="Leve, início"><img src="img/mark.svg" alt="" width="30" height="30" /> Leve</a>
+      <nav class="nav-links" aria-label="Seções">
+        <a class="link-u" href="#como">Como funciona</a>
+        <a class="link-u" href="#precos">Preço</a>
+        <a class="link-u" href="#ativar">Já comprou? Ative aqui</a>
+        <a class="link-u" href="#perguntas">Dúvidas</a>
+      </nav>
+      <div class="nav-right">
+        <a class="lang" href="en/" hreflang="en" lang="en">EN</a>
+        <a class="btn btn-gold btn-sm" href="#precos" data-buy data-track="nav_cta">Comprar agora</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="aura" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
+      <div class="lines" aria-hidden="true"></div>
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow fade-up" style="animation-delay:.1s">Leve Premium · para quem usa caneta GLP-1</span>
+          <h1><span class="ln"><span>Emagrecer não</span></span><span class="ln"><span>precisa ser uma</span></span><span class="ln"><span><em class="gold-text">luta solitária.</em></span></span></h1>
+          <p class="lead fade-up" style="animation-delay:.55s">Treino, dieta e lembretes feitos para quem usa Mounjaro, Ozempic ou Wegovy. O Leve cuida da rotina para você cuidar de você.</p>
+          <div class="cta-row fade-up" style="animation-delay:.7s">
+            <a class="btn btn-gold" href="#precos" data-buy data-track="hero_cta" data-plan="premium">Comprar agora · R$ 97 <svg class="arrow"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-line" href="app/" data-track="hero_demo">Ver o app funcionando</a>
+          </div>
+          <div class="assure fade-up" style="animation-delay:.85s"><span>Pagamento único</span><span>12 meses de acesso</span><span>Garantia de 7 dias</span></div>
         </div>
-        <div class="trust"><span>🇧🇷 Em português</span><span>🔒 Dados só no seu celular</span><span>💚 Grátis no essencial</span></div>
+        <div class="stage" aria-hidden="true">
+          <div class="device-wrap fade-up" style="animation-delay:.3s"><div class="device"><div class="float device-in"><div class="screen">
+            <img class="on" src="img/app-hoje.webp" alt="" />
+            <img src="img/app-treino.webp" alt="" loading="lazy" />
+            <img src="img/app-dieta.webp" alt="" loading="lazy" />
+          </div></div></div></div>
+          <div class="chip c1"><div class="in" style="display:flex;gap:12px;align-items:center"><span class="dot"><svg><use href="#i-bell"/></svg></span><div><small>Lembrete · 08:00</small><b>Hoje é dia de dose</b></div></div></div>
+          <div class="chip c2"><div class="in" style="display:flex;gap:12px;align-items:center;animation-delay:-3s"><span class="dot"><svg><use href="#i-pin"/></svg></span><div><small>Próximo local</small><b>Braço esquerdo</b></div></div></div>
+          <div class="chip c3"><div class="in" style="display:flex;gap:12px;align-items:center;animation-delay:-5s"><span class="dot"><svg><use href="#i-leaf"/></svg></span><div style="min-width:130px"><small>Proteína de hoje</small><b>61 g de 90 g</b><div class="bar"><i></i></div></div></div></div>
+        </div>
       </div>
-      <div class="phones" aria-hidden="true">
-        <div class="phone p2"><img src="img/app-treino.png" alt="" /></div>
-        <div class="phone p1"><img src="img/app-hoje.png" alt="" /></div>
+      <div class="scroll-cue" aria-hidden="true"><i></i></div>
+    </section>
+
+    <div class="marquee" aria-hidden="true"><div class="marquee-track">
+      <span>Lembrete de dose</span><span>Rodízio do local</span><span>Treino para o seu corpo</span><span>Seis dietas com cardápio</span><span>Água, comida e sono</span><span>Relatório para o médico</span>
+      <span>Lembrete de dose</span><span>Rodízio do local</span><span>Treino para o seu corpo</span><span>Seis dietas com cardápio</span><span>Água, comida e sono</span><span>Relatório para o médico</span>
+    </div></div>
+
+    <section class="sec">
+      <div class="wrap">
+        <span class="eyebrow" data-reveal>Por que o Leve existe</span>
+        <p class="manifesto" data-gold="rotina|companhia">A caneta faz a parte dela. O resto é rotina: lembrar o dia da dose, comer proteína mesmo sem fome, treinar para preservar o músculo e chegar à consulta sabendo contar como foi. Ninguém precisa fazer isso sozinho. O Leve é essa companhia, todos os dias.</p>
+        <div class="pains">
+          <div class="pain" data-reveal><span class="n">i.</span><h3>“Foi segunda ou terça?”</h3><p>Esquecer o dia ou aplicar sempre no mesmo lugar é comum, e atrapalha o tratamento.</p></div>
+          <div class="pain" data-reveal style="--d:.12s"><span class="n">ii.</span><h3>Pouca fome, pouca proteína</h3><p>Sem proteína e sem treino, parte do que vai embora é músculo, não gordura.</p></div>
+          <div class="pain" data-reveal style="--d:.24s"><span class="n">iii.</span><h3>A consulta de cabeça</h3><p>Enjoo, intestino, peso, doses. Na hora da consulta, ninguém lembra quando nem quanto.</p></div>
+        </div>
       </div>
-    </header>
+    </section>
+
+    <section id="como">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow" data-reveal>Como funciona</span>
+          <h2><span class="split-line"><span>Um app. A rotina</span></span><span class="split-line"><span style="--d:.1s">inteira do <em>tratamento.</em></span></span></h2>
+        </div>
+        <div class="show">
+          <div class="chapters">
+            <article class="chapter active">
+              <span class="num">01</span>
+              <h3>A dose, no dia certo e no lugar certo.</h3>
+              <p>O Leve avisa no dia e no horário da sua aplicação e mostra, no desenho do corpo, onde aplicar desta vez.</p>
+              <ul class="ticks"><li>Lembrete direto no calendário do celular</li><li>Rodízio dos locais de aplicação</li><li>Aviso antes da caneta acabar</li><li>Plano de aumento de dose que o seu médico passou</li></ul>
+            </article>
+            <article class="chapter">
+              <span class="num">02</span>
+              <h3>Treino feito para o seu corpo.</h3>
+              <p>Montado pela sua idade, peso, altura e nível de atividade. Em casa ou na academia, com explicação de cada exercício.</p>
+              <ul class="ticks"><li>Começa no seu nível, sem impacto quando precisa</li><li>Respeita joelho, coluna e outras limitações</li><li>Foco em preservar o músculo</li></ul>
+            </article>
+            <article class="chapter">
+              <span class="num">03</span>
+              <h3>Comer bem, mesmo sem fome.</h3>
+              <p>Seis dietas com cardápio e porções calculadas para você, com comida brasileira de verdade.</p>
+              <ul class="ticks"><li>Alta proteína, mediterrânea, low carb, vegetariana, econômica e leve para dias de enjoo</li><li>Meta diária de proteína e água</li><li>Alarmes de água, refeições e sono</li></ul>
+            </article>
+            <article class="chapter">
+              <span class="num">04</span>
+              <h3>Seu progresso, sem achismo.</h3>
+              <p>Peso, medidas e composição corporal num só lugar, e um relatório de uma página para levar à consulta.</p>
+              <ul class="ticks"><li>Gráfico de evolução e marcos de 5% e 10%</li><li>% de gordura e massa magra</li><li>Diário de sintomas com dicas práticas</li><li>Relatório em PDF para o médico</li></ul>
+            </article>
+          </div>
+          <div class="show-phone" aria-hidden="true">
+            <div class="stage">
+              <div class="ring"></div>
+              <div class="device"><div class="device-in"><div class="screen">
+                <img class="on" src="img/app-hoje.webp" alt="" loading="lazy" />
+                <img src="img/app-treino.webp" alt="" loading="lazy" />
+                <img src="img/app-dieta.webp" alt="" loading="lazy" />
+                <img src="img/app-progresso.webp" alt="" loading="lazy" />
+              </div></div></div>
+              <div class="dots"><i class="on"></i><i></i><i></i><i></i></div>
+            </div>
+            <p class="show-note">Telas reais do app, com dados de exemplo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow" data-reveal>E ainda</span>
+          <h2><span class="split-line"><span>Os detalhes que fazem</span></span><span class="split-line"><span style="--d:.1s">a <em>diferença.</em></span></span></h2>
+        </div>
+        <div class="grid" data-reveal="fade">
+          <div class="cell"><span class="ico"><svg><use href="#i-pulse"/></svg></span><h3>Diário de sintomas</h3><p>Registre enjoo, intestino e cansaço em dois toques e receba dicas práticas para cada efeito.</p></div>
+          <div class="cell"><span class="ico"><svg><use href="#i-body"/></svg></span><h3>Análise corporal</h3><p>% de gordura, massa magra, risco pela cintura e sua faixa de peso saudável, atualizados a cada medida.</p></div>
+          <div class="cell"><span class="ico"><svg><use href="#i-clock"/></svg></span><h3>Alarmes do dia a dia</h3><p>Com a caneta, a fome e a sede somem. Os alarmes lembram você de comer, beber água, dormir e treinar.</p></div>
+          <div class="cell"><span class="ico"><svg><use href="#i-box"/></svg></span><h3>Estoque da caneta</h3><p>Avisa antes do remédio acabar, para você comprar ou pedir a receita sem atrasar o tratamento.</p></div>
+          <div class="cell"><span class="ico"><svg><use href="#i-doc"/></svg></span><h3>Relatório ao médico</h3><p>Um resumo de uma página, pronto para imprimir ou mandar no WhatsApp antes da consulta.</p></div>
+          <div class="cell"><span class="ico"><svg><use href="#i-lock"/></svg></span><h3>Seus dados com você</h3><p>Suas informações de saúde ficam guardadas no seu celular. Você exporta ou apaga quando quiser.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="stats">
+          <div class="stat" data-reveal><b data-count="12">12</b><span>meses de acesso</span></div>
+          <div class="stat" data-reveal style="--d:.1s"><b data-count="6">6</b><span>dietas com cardápio</span></div>
+          <div class="stat" data-reveal style="--d:.2s"><b data-count="7">7</b><span>dias de garantia</span></div>
+          <div class="stat" data-reveal style="--d:.3s"><b data-count="2">2</b><span>celulares por compra</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="precos">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow" data-reveal>Preço</span>
+          <h2><span class="split-line"><span>Um ano inteiro de</span></span><span class="split-line"><span style="--d:.1s">companhia, <em>uma vez só.</em></span></span></h2>
+          <p class="lead" data-reveal style="--d:.2s">O controle da caneta é grátis para sempre. O Premium vira seu treinador e seu cardápio de bolso por menos de R$ 0,27 por dia.</p>
+        </div>
+        <div class="plans">
+          <div class="plan" data-reveal>
+            <h3>Grátis</h3>
+            <div class="price"><small>R$</small>0</div>
+            <p class="terms">Para sempre, sem cartão</p>
+            <ul>
+              <li><svg><use href="#i-check"/></svg>Lembrete de dose e rodízio do local</li>
+              <li><svg><use href="#i-check"/></svg>Estoque da caneta e plano de doses</li>
+              <li><svg><use href="#i-check"/></svg>Peso, medidas e gráfico</li>
+              <li><svg><use href="#i-check"/></svg>Diário de sintomas com dicas</li>
+              <li><svg><use href="#i-check"/></svg>Meta de proteína e água</li>
+            </ul>
+            <a class="btn btn-line" href="app/" data-track="plan_free" data-plan="gratis">Usar grátis agora</a>
+          </div>
+          <div class="plan prem" data-reveal style="--d:.12s">
+            <span class="badge">Garantia de 7 dias</span>
+            <h3>Premium</h3>
+            <div class="price"><small>R$</small><span class="gold-text">97</span></div>
+            <p class="terms">Pagamento único · 12 meses de acesso · Pix, boleto ou até 12x no cartão</p>
+            <ul>
+              <li><svg><use href="#i-check"/></svg>Tudo do plano grátis</li>
+              <li><svg><use href="#i-check"/></svg>Treino personalizado pela sua idade, peso e nível</li>
+              <li><svg><use href="#i-check"/></svg>Seis dietas com cardápio calculado para você</li>
+              <li><svg><use href="#i-check"/></svg>Análise corporal: % de gordura e massa magra</li>
+              <li><svg><use href="#i-check"/></svg>Alarmes de água, refeições, sono e treino</li>
+              <li><svg><use href="#i-check"/></svg>Relatório em PDF para o médico</li>
+            </ul>
+            <a class="btn btn-gold" href="#precos" data-buy data-track="plan_premium" data-plan="premium">Comprar agora <svg class="arrow"><use href="#i-arrow"/></svg></a>
+            <p class="fine">Compra segura pela Hotmart. Não gostou? Devolvemos seu dinheiro em até 7 dias.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ativar">
+      <div class="wrap">
+        <div class="activate" data-reveal>
+          <div>
+            <span class="eyebrow">Já comprou?</span>
+            <h2 style="margin:22px 0 20px">Ative aqui o seu <em>Premium.</em></h2>
+            <p class="muted" style="margin:0 0 32px">Leva menos de um minuto. Vale por 12 meses, em até 2 celulares.</p>
+            <a class="btn btn-gold" href="app/?ativar=1" data-track="ativar">Ativar meu acesso <svg class="arrow"><use href="#i-arrow"/></svg></a>
+          </div>
+          <ol class="steps">
+            <li><div><b>Abra o e-mail da Hotmart</b><span>Copie o código da transação. Ele começa com HP.</span></div></li>
+            <li><div><b>Toque em “Ativar meu acesso”</b><span>O app abre direto na tela de ativação.</span></div></li>
+            <li><div><b>Digite o e-mail da compra e o código</b><span>Pronto. Treino, dieta e alarmes liberados.</span></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="perguntas">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow" data-reveal>Dúvidas</span>
+          <h2><span class="split-line"><span>Perguntas <em>frequentes.</em></span></span></h2>
+        </div>
+        <div class="faq" data-reveal>
+          <div class="qa"><button aria-expanded="false">O Leve diz qual dose eu devo tomar?<span class="pm"></span></button><div class="ans"><div><p>Não. O Leve só organiza o tratamento que o seu médico receitou. Ele não indica, prescreve nem altera doses.</p></div></div></div>
+          <div class="qa"><button aria-expanded="false">Como recebo o acesso depois de comprar?<span class="pm"></span></button><div class="ans"><div><p>A Hotmart manda um e-mail com o código da transação. Abra o app, toque em “Já comprou? Ative aqui”, digite o e-mail da compra e o código. O Premium vale por 12 meses, em até 2 celulares.</p></div></div></div>
+          <div class="qa"><button aria-expanded="false">E se eu não gostar?<span class="pm"></span></button><div class="ans"><div><p>Você tem 7 dias de garantia. Pede o reembolso pela Hotmart e recebe todo o dinheiro de volta, sem perguntas.</p></div></div></div>
+          <div class="qa"><button aria-expanded="false">Meus dados de saúde ficam seguros?<span class="pm"></span></button><div class="ans"><div><p>Sim. Suas informações de saúde ficam guardadas no seu celular. Você pode exportar ou apagar tudo a qualquer momento, como prevê a LGPD.</p></div></div></div>
+          <div class="qa"><button aria-expanded="false">Funciona no iPhone e no Android?<span class="pm"></span></button><div class="ans"><div><p>Sim. O Leve abre no navegador e pode ser instalado na tela inicial como um app, sem ocupar espaço.</p></div></div></div>
+          <div class="qa"><button aria-expanded="false">Serve para Saxenda, que é diário?<span class="pm"></span></button><div class="ans"><div><p>Serve. Você escolhe se a sua caneta é semanal ou diária.</p></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final">
+      <div class="aura" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
+      <div class="wrap" style="position:relative">
+        <span class="eyebrow" data-reveal>Comece hoje</span>
+        <h2><span class="split-line"><span>Com calma, com constância</span></span><span class="split-line"><span style="--d:.12s">e <em class="gold-text">com companhia.</em></span></span></h2>
+        <div data-reveal style="--d:.25s;display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+          <a class="btn btn-gold" href="#precos" data-buy data-track="final_cta" data-plan="premium">Comprar agora · R$ 97 <svg class="arrow"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-line" href="app/" data-track="final_demo">Experimentar grátis</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <a class="brand" href="#"><img src="img/mark.svg" alt="" width="30" height="30" /> Leve</a>
+        <nav aria-label="Rodapé">
+          <a class="link-u" href="app/">Abrir o app</a>
+          <a class="link-u" href="app/?ativar=1">Ativar compra</a>
+          <a class="link-u" href="afiliados/">Seja afiliado</a>
+          <a class="link-u" href="en/" hreflang="en">English</a>
+        </nav>
+      </div>
+      <p class="disclaimer"><b>Importante:</b> canetas emagrecedoras devem ser usadas somente com receita e acompanhamento médico. O Leve não substitui orientação profissional e não indica doses. Resultados variam de pessoa para pessoa. Ozempic, Wegovy, Saxenda, Mounjaro e demais nomes são marcas de seus respectivos fabricantes; o Leve não tem relação com eles.</p>
+      <p>© <span data-year></span> Leve · feito no Brasil</p>
+    </div>
+  </footer>
+
+  <div class="buybar" aria-hidden="false">
+    <div><b>R$ 97</b><small>12 meses · garantia de 7 dias</small></div>
+    <a class="btn btn-gold" href="#precos" data-buy data-track="buybar" data-plan="premium">Comprar agora</a>
   </div>
 
-  <section>
-    <div class="wrap">
-      <div class="eyebrow">O problema</div>
-      <h2>A caneta funciona. O difícil é o dia a dia.</h2>
-      <p class="sub">Milhões de brasileiros já usam canetas emagrecedoras, mas quase todo o acompanhamento ainda é feito de cabeça, em anotação no celular ou em apps em inglês.</p>
-      <div class="pains">
-        <div class="pain"><span class="emoji">🗓️</span><b>"Foi segunda ou terça?"</b><p>Esquecer o dia ou aplicar sempre no mesmo lugar é comum, e atrapalha o resultado.</p></div>
-        <div class="pain"><span class="emoji">🤢</span><b>Enjoo e intestino preso</b><p>Os efeitos vêm e vão, e na consulta ninguém lembra quando nem quanto.</p></div>
-        <div class="pain"><span class="emoji">💪</span><b>Perder músculo, não só gordura</b><p>Com pouca fome, falta proteína. Sem ela, parte do peso perdido é músculo.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="eyebrow">Como o Leve ajuda</div>
-      <h2>Tudo do seu tratamento num lugar só</h2>
-      <div class="features">
-        <div class="feature"><div class="ic">💉</div><h3>Lembrete de dose</h3><p>Aviso no dia e horário certos, direto no calendário do celular.</p></div>
-        <div class="feature"><div class="ic">🔄</div><h3>Rodízio do local</h3><p>O app mostra no desenho do corpo onde aplicar desta vez.</p></div>
-        <div class="feature"><div class="ic">📉</div><h3>Peso e medidas</h3><p>Gráfico da evolução, marcos de 5% e 10% e quanto falta para a meta.</p></div>
-        <div class="feature"><div class="ic">🩺</div><h3>Diário de sintomas</h3><p>Registre em dois toques e receba dicas práticas para cada efeito.</p></div>
-        <div class="feature"><div class="ic">🍗</div><h3>Meta de proteína</h3><p>Some ovos, frango, iogurte e feijão com um toque. Comida brasileira de verdade.</p></div>
-        <div class="feature"><div class="ic">📄</div><h3>Relatório ao médico</h3><p>Um resumo de uma página, pronto para imprimir ou mandar no WhatsApp.</p></div>
-        <div class="feature"><div class="ic">🏋️</div><h3>Treino personalizado</h3><p>Montado pela sua idade, peso, altura e nível de atividade. Em casa ou na academia, com explicação de cada exercício.</p></div>
-        <div class="feature"><div class="ic">🥗</div><h3>6 dietas com cardápio</h3><p>Alta proteína, mediterrânea, low carb, vegetariana, econômica e leve para dias de enjoo. Porções calculadas para você.</p></div>
-        <div class="feature"><div class="ic">🧬</div><h3>Análise corporal</h3><p>% de gordura, massa magra, risco pela cintura e sua faixa de peso saudável, atualizados a cada medida.</p></div>
-        <div class="feature"><div class="ic">⏰</div><h3>Alarmes de água, comida e sono</h3><p>Com a caneta, a fome e a sede somem. Os alarmes garantem que você coma, beba e durma o suficiente.</p></div>
-        <div class="feature"><div class="ic">💊</div><h3>Estoque da caneta</h3><p>Avisa antes do remédio acabar e mostra o plano de aumento de dose que o seu médico passou.</p></div>
-        <div class="feature"><div class="ic">🇧🇷</div><h3>Feito para o Brasil</h3><p>Em português, com comida brasileira de verdade e preço acessível.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="results">
-        <div>
-          <div class="eyebrow" style="color:#BDF0D8">Resultados que dá para medir</div>
-          <h2>Constância é o que separa quem chega à meta</h2>
-          <p class="sub">O Leve mostra o que importa: se você está tomando as doses em dia, quanto já perdeu e se está comendo proteína suficiente.</p>
-        </div>
-        <div class="nums">
-          <div class="num"><b>% de adesão</b><span>doses tomadas no prazo, semana a semana</span></div>
-          <div class="num"><b>5% · 10%</b><span>marcos de perda de peso que já trazem benefícios à saúde</span></div>
-          <div class="num"><b>g de proteína</b><span>meta diária calculada para o seu peso</span></div>
-          <div class="num"><b>1 página</b><span>de relatório para a sua consulta</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="precos">
-    <div class="wrap">
-      <div class="eyebrow">Preço justo</div>
-      <h2>Um ano inteiro de acompanhamento por menos de uma consulta</h2>
-      <p class="sub">O controle da caneta é grátis para sempre. O Premium vira seu personal e seu nutricionista de bolso por menos de R$ 0,27 por dia.</p>
-      <div class="pricing">
-        <div class="plan">
-          <h3>Grátis</h3>
-          <div class="price">R$ 0</div>
-          <ul><li>Lembrete de dose e rodízio do local</li><li>Estoque da caneta e plano de doses</li><li>Peso, medidas e gráfico</li><li>Diário de sintomas com dicas</li><li>Meta de proteína e água</li></ul>
-          <a class="btn ghost" href="app/" data-track="plan_free" data-plan="gratis">Usar grátis agora</a>
-        </div>
-        <div class="plan featured">
-          <span class="tag">Garantia de 7 dias</span>
-          <h3>Premium</h3>
-          <div class="price">R$ 97</div>
-          <p style="margin:4px 0 0;color:var(--muted)">Pagamento único · 12 meses de acesso · Pix, boleto ou até 12x no cartão</p>
-          <ul><li>Tudo do plano grátis</li><li>Treino personalizado pela sua idade, peso e nível</li><li>6 dietas com cardápio calculado para você</li><li>Análise corporal: % de gordura e massa magra</li><li>Alarmes de água, refeições, sono e treino</li><li>Relatório em PDF para o médico</li></ul>
-          <a class="btn accent" href="#lista" data-buy data-track="plan_premium" data-plan="premium">Comprar agora</a>
-          <p style="margin:10px 0 0;color:var(--muted);font-size:.85rem;text-align:center">Compra segura pela Hotmart. Não gostou? Devolvemos seu dinheiro em até 7 dias.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="lista">
-    <div class="wrap">
-      <div class="signup">
-        <div>
-          <div class="eyebrow">Acesso antecipado</div>
-          <h2>Seja um dos primeiros a usar</h2>
-          <p class="sub">Quem entrar na lista agora ganha <b>3 meses de Premium grátis</b> no lançamento e ajuda a decidir as próximas funções.</p>
-          <p class="sub">Leva 30 segundos. Não mandamos spam.</p>
-        </div>
-        <div>
-          <form id="form" novalidate>
-            <label>Seu nome<input name="nome" autocomplete="given-name" required /></label>
-            <label>E-mail ou WhatsApp<input name="contato" required placeholder="voce@email.com ou (11) 9..." /></label>
-            <label>Qual caneta você usa?
-              <select name="caneta" required>
-                <option value="">Escolha</option>
-                <option>Mounjaro</option><option>Ozempic</option><option>Wegovy</option><option>Saxenda</option>
-                <option>Outra</option><option>Ainda não uso, estou pensando</option><option>Sou profissional de saúde</option>
-              </select>
-            </label>
-            <fieldset>
-              <legend>Quanto você pagaria por mês por um app assim?</legend>
-              <div class="radios">
-                <label><input type="radio" name="pagaria" value="0" required /> Só usaria grátis</label>
-                <label><input type="radio" name="pagaria" value="ate15" /> Até R$ 15</label>
-                <label><input type="radio" name="pagaria" value="15a30" /> R$ 15 a R$ 30</label>
-                <label><input type="radio" name="pagaria" value="30mais" /> Mais de R$ 30</label>
-              </div>
-            </fieldset>
-            <label class="consent"><input type="checkbox" name="lgpd" required /> Aceito receber novidades do Leve. Posso sair quando quiser. Meus dados não serão vendidos.</label>
-            <input type="hidden" name="plano_clicado" id="plano" />
-            <input type="hidden" name="origem" id="origem" />
-            <button class="btn primary" type="submit">Quero acesso antecipado</button>
-            <p id="err" role="alert" style="color:#B42318;margin:0;font-weight:600"></p>
-          </form>
-          <div class="success" id="ok" role="status">🎉 Pronto! Você está na lista. Vamos te avisar assim que o Leve estiver disponível. Enquanto isso, <a href="app/">experimente a versão de demonstração</a>.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap" style="max-width:820px">
-      <h2>Perguntas frequentes</h2>
-      <details><summary>O Leve diz qual dose eu devo tomar?</summary><p>Não. O Leve só organiza o tratamento que seu médico receitou. Ele não indica, prescreve nem altera doses.</p></details>
-      <details><summary>Meus dados de saúde ficam seguros?</summary><p>Sim. Na versão atual tudo fica guardado só no seu celular. Você pode exportar ou apagar seus dados a qualquer momento, como prevê a LGPD.</p></details>
-      <details><summary>Funciona no iPhone e no Android?</summary><p>Sim. O Leve abre no navegador e pode ser instalado na tela inicial como um app, sem ocupar espaço.</p></details>
-      <details><summary>Preciso pagar?</summary><p>Não. Lembretes, peso, sintomas e proteína são grátis para sempre. O Premium é opcional.</p></details>
-      <details><summary>Serve para Saxenda, que é diário?</summary><p>Serve. Você escolhe se a sua caneta é semanal ou diária.</p></details>
-    </div>
-  </section>
-
-  <div class="wrap">
-    <footer>
-      <div class="disclaimer"><b>Importante:</b> canetas emagrecedoras devem ser usadas somente com receita e acompanhamento médico. O Leve não substitui orientação profissional. Ozempic, Wegovy, Saxenda, Mounjaro e demais nomes são marcas de seus respectivos fabricantes; o Leve não tem relação com eles.</div>
-      <p>© <span id="y"></span> Leve · feito no Brasil 🇧🇷</p>
-    </footer>
-  </div>
-
+  <script src="assets/leve.js"></script>
   <script>
-    // ===== CONFIGURAÇÃO =====
-    // Cole aqui o endereço do seu formulário (ex.: Formspree: https://formspree.io/f/xxxxxxx).
-    // Enquanto estiver vazio, os cadastros ficam salvos só no navegador (bom para testar).
-    const FORM_ENDPOINT = '';
-    // Link de checkout da Hotmart. Enquanto estiver vazio, "Comprar" leva para a lista de espera.
-    const HOTMART_CHECKOUT = 'https://pay.hotmart.com/S108552843Q';
-    if (HOTMART_CHECKOUT) document.querySelectorAll('[data-buy]').forEach(a => { a.href = HOTMART_CHECKOUT + (location.search ? (HOTMART_CHECKOUT.includes('?') ? '&' : '?') + location.search.slice(1) : ''); a.target = '_blank'; a.rel = 'noopener'; });
-
-    // ========================
-
-    document.getElementById('y').textContent = new Date().getFullYear();
-    const params = new URLSearchParams(location.search);
-    document.getElementById('origem').value = params.get('utm_source') || document.referrer || 'direto';
-
-    // Rastreia cliques (teste de "porta falsa" do preço). Se houver Google Analytics/Meta Pixel, envia o evento.
-    function track(name, data) {
-      try {
-        const log = JSON.parse(localStorage.getItem('leve:eventos') || '[]');
-        log.push({ name, data, t: Date.now() }); localStorage.setItem('leve:eventos', JSON.stringify(log));
-        if (window.gtag) gtag('event', name, data || {});
-        if (window.fbq) fbq('trackCustom', name, data || {});
-      } catch (e) {}
-    }
-    document.querySelectorAll('[data-track]').forEach(el => el.addEventListener('click', () => {
-      track(el.dataset.track);
-      if (el.dataset.plan) document.getElementById('plano').value = el.dataset.plan;
-    }));
-
-    document.getElementById('form').addEventListener('submit', async e => {
-      e.preventDefault();
-      const f = e.target, err = document.getElementById('err');
-      if (!f.checkValidity()) { err.textContent = 'Preencha todos os campos e aceite receber novidades.'; f.reportValidity(); return; }
-      err.textContent = '';
-      const data = Object.fromEntries(new FormData(f));
-      track('cadastro', { caneta: data.caneta, pagaria: data.pagaria, plano: data.plano_clicado });
-      const btn = f.querySelector('button'); btn.disabled = true; btn.textContent = 'Enviando...';
-      try {
-        if (FORM_ENDPOINT) {
-          const r = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
-          if (!r.ok) throw new Error('falha');
-        } else {
-          const list = JSON.parse(localStorage.getItem('leve:cadastros') || '[]'); list.push(data);
-          localStorage.setItem('leve:cadastros', JSON.stringify(list));
-        }
-        f.style.display = 'none'; document.getElementById('ok').classList.add('show');
-      } catch (x) {
-        err.textContent = 'Não conseguimos enviar agora. Tente de novo em instantes.';
-        btn.disabled = false; btn.textContent = 'Quero acesso antecipado';
-      }
-    });
+    // Link de checkout da Hotmart. Vazio = os botões levam à seção de preço.
+    const HOTMART_CHECKOUT = 'https://pay.hotmart.com/S108552843Q'
+    leveCheckout(HOTMART_CHECKOUT)
   </script>
 </body>
 </html>
