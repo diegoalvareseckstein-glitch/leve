@@ -39,15 +39,16 @@ Deno.serve(async req => {
     const approvedMs = Number(data?.purchase?.approved_date) || Date.now()
     const approved = new Date(approvedMs)
     const expires = ACCESS_DAYS > 0 ? new Date(approvedMs + ACCESS_DAYS * 86400000).toISOString() : null
-    const { data: prev } = await db.from('purchases').select('status').eq('transaction', tx).maybeSingle()
-    if (prev?.status === 'revoked') {
+    // Nunca reativa uma compra já reembolsada/cancelada, mesmo se os avisos chegarem fora de ordem.
+    const row = { email, name: data?.buyer?.name ?? null, product_id: productId || null, status: 'active', last_event: event,
+      approved_at: approved.toISOString(), expires_at: expires, updated_at: new Date().toISOString() }
+    const ins = await db.from('purchases').upsert({ transaction: tx, ...row }, { onConflict: 'transaction', ignoreDuplicates: true })
+    const upd = await db.from('purchases').update(row).eq('transaction', tx).neq('status', 'revoked').select('transaction')
+    const error = ins.error ?? upd.error
+    if (!error && (upd.data?.length ?? 0) === 0) {
       await db.from('webhook_log').insert({ event, transaction: tx, ok: true, note: 'já revogada, mantida' })
       return json({ ok: true, kept: 'revoked' })
     }
-    const { error } = await db.from('purchases').upsert({
-      transaction: tx, email, name: data?.buyer?.name ?? null, product_id: productId || null,
-      status: 'active', last_event: event, approved_at: approved.toISOString(), expires_at: expires, updated_at: new Date().toISOString(),
-    })
     await db.from('webhook_log').insert({ event, transaction: tx, ok: !error, note: error?.message ?? 'liberado' })
     return error ? json({ error: error.message }, 500) : json({ ok: true, granted: tx })
   }
